@@ -3,6 +3,9 @@ Likelog
 
 Likelog - The Frontend Logging Framework for JavaScript 
 
+## Size
+This library is very lightweight. The minified file has 5.5 KB and can be GZip-compressed to 2 KB.
+
 ## Usage
 
 * Install:
