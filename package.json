@@ -1,9 +1,13 @@
 {
   "name": "likelog",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "author": "uxname",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/uxname/likelog"
+  },
   "scripts": {
     "build": "npx browserify test.js -o test_bundle.js && npx uglifyjs -o test_bundle.js --config-file uglifyjs_config.json -- test_bundle.js"
   },
