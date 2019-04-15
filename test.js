@@ -1,6 +1,6 @@
-const {UXLogger, ConsoleAppender, ServerAppender, LEVELS} = require('./index');
+const {Loggi, ConsoleAppender, ServerAppender, LEVELS} = require('./index');
 
-const log = new UXLogger({
+const log = new Loggi({
     appenders: [new ConsoleAppender(), new ServerAppender('http://localhost:5111/log', 500, 10)],
     name: "App",
     customPrefix: `Console prefix`,

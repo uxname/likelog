@@ -9,7 +9,7 @@ const LEVELS = {
     ERROR: 5,
 };
 
-class UXLogger {
+class Loggi {
     constructor(config) {
         if (!config || !config.appenders) throw Error('Wrong config');
         this.appenders = config.appenders;
@@ -49,7 +49,7 @@ class UXLogger {
 }
 
 module.exports = {
-    UXLogger: UXLogger,
+    Loggi: Loggi,
     LEVELS: LEVELS,
     ConsoleAppender: ConsoleAppender,
     ServerAppender: ServerAppender
