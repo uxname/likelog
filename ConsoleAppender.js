@@ -9,7 +9,7 @@ class ConsoleAppender {
 
     trace() {
         return console.log(
-            tools.generatePrefix('trace', this.name, this.customPrefix),
+            tools.generatePrefix('trace', this.name, this.customPrefix, this.showDate),
             'background: #339933; color: #FFFFFF',
             ...arguments
         );
@@ -17,7 +17,7 @@ class ConsoleAppender {
 
     debug() {
         return console.log(
-            tools.generatePrefix('debug', this.name, this.customPrefix),
+            tools.generatePrefix('debug', this.name, this.customPrefix, this.showDate),
             'background: #00cc66; color: #FFFFFF',
             ...arguments
         );
@@ -25,7 +25,7 @@ class ConsoleAppender {
 
     info() {
         return console.log(
-            tools.generatePrefix('info', this.name, this.customPrefix),
+            tools.generatePrefix('info', this.name, this.customPrefix, this.showDate),
             'background: #00ff99; color: #000000',
             ...arguments
         );
@@ -33,7 +33,7 @@ class ConsoleAppender {
 
     warn() {
         return console.log(
-            tools.generatePrefix('warn', this.name, this.customPrefix),
+            tools.generatePrefix('warn', this.name, this.customPrefix, this.showDate),
             'background: #ffff00; color: #000000',
             ...arguments
         );
@@ -41,7 +41,7 @@ class ConsoleAppender {
 
     error() {
         return console.log(
-            tools.generatePrefix('error', this.name, this.customPrefix),
+            tools.generatePrefix('error', this.name, this.customPrefix, this.showDate),
             'background: #ff0000; color: #FFFFFF',
             ...arguments
         );
