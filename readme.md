@@ -1,4 +1,22 @@
-const {Likelog, ConsoleAppender, ServerAppender, LEVELS} = require('./index');
+Likelog
+======
+
+Likelog - The Frontend Logging Framework for JavaScript 
+
+## Usage
+
+* Install:
+
+`yarn add likelog`
+
+or
+
+`npm install --save likelog`
+
+* Usage:
+
+```javascript
+import {Likelog, ConsoleAppender, ServerAppender, LEVELS} from "likelog";
 
 const log = new Likelog({
     appenders: [new ConsoleAppender(), new ServerAppender('http://localhost:5111/log', 3000, 1000)],
@@ -14,6 +32,7 @@ log.info('Test info log', {test: 'log_info'});
 log.warn('Test warn log', {test: 'log_warn'});
 log.error('Test error log', {test: 'log_error'});
 
-// setInterval(() => {
-//     log.warn('WORKS');
-// }, 200);
+
+```
+
+![](./.github/demo.png)

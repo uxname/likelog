@@ -52,7 +52,7 @@ class ServerAppender {
         this.sendInterval = sendInterval;
 
         setInterval(async () => {
-            console.log(this.logCache.logArray.length);
+            // console.log(this.logCache.logArray.length);
             await sendLogs(this.url, this.logCache);
         }, this.sendInterval)
     }
