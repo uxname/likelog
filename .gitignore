@@ -123,3 +123,4 @@ jspm_packages/
 .serverless
 
 .idea
+test_bundle.js
