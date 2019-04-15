@@ -1,6 +1,6 @@
-const {Loggi, ConsoleAppender, ServerAppender, LEVELS} = require('./index');
+const {Likelog, ConsoleAppender, ServerAppender, LEVELS} = require('./index');
 
-const log = new Loggi({
+const log = new Likelog({
     appenders: [new ConsoleAppender(), new ServerAppender('http://localhost:5111/log', 500, 10)],
     name: "App",
     customPrefix: `Console prefix`,

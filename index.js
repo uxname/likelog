@@ -9,7 +9,7 @@ const LEVELS = {
     ERROR: 5,
 };
 
-class Loggi {
+class Likelog {
     constructor(config) {
         if (!config || !config.appenders) throw Error('Wrong config');
         this.appenders = config.appenders;
@@ -49,7 +49,7 @@ class Loggi {
 }
 
 module.exports = {
-    Loggi: Loggi,
+    Likelog: Likelog,
     LEVELS: LEVELS,
     ConsoleAppender: ConsoleAppender,
     ServerAppender: ServerAppender
