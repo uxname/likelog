@@ -1,0 +1,18 @@
+{
+  "name": "uxlogger_frontend",
+  "version": "0.0.1",
+  "main": "index.js",
+  "author": "uxname",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx browserify test.js -o test_bundle.js && npx uglifyjs -o test_bundle.js --config-file uglifyjs_config.json -- test_bundle.js"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "uglify-es": "^3.3.9"
+  },
+  "dependencies": {
+    "buffer": "^5.2.1",
+    "uuid-random": "^1.0.8"
+  }
+}
