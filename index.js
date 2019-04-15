@@ -23,27 +23,27 @@ class Likelog {
     }
 
     trace() {
-        if (!this.showLevels.includes(LEVELS.TRACE)) return;
+        if (this.showLevels) if (!this.showLevels.includes(LEVELS.TRACE)) return;
         this.appenders.forEach(item => item.trace(...arguments));
     }
 
     debug() {
-        if (!this.showLevels.includes(LEVELS.DEBUG)) return;
+        if (this.showLevels) if (!this.showLevels.includes(LEVELS.DEBUG)) return;
         this.appenders.forEach(item => item.debug(...arguments));
     }
 
     info() {
-        if (!this.showLevels.includes(LEVELS.INFO)) return;
+        if (this.showLevels) if (!this.showLevels.includes(LEVELS.INFO)) return;
         this.appenders.forEach(item => item.info(...arguments));
     }
 
     warn() {
-        if (!this.showLevels.includes(LEVELS.WARN)) return;
+        if (this.showLevels) if (!this.showLevels.includes(LEVELS.WARN)) return;
         this.appenders.forEach(item => item.warn(...arguments));
     }
 
     error() {
-        if (!this.showLevels.includes(LEVELS.ERROR)) return;
+        if (this.showLevels && !this.showLevels.includes(LEVELS.ERROR)) return;
         this.appenders.forEach(item => item.error(...arguments));
     }
 }
