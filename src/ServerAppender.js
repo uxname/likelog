@@ -42,7 +42,13 @@ async function sendLogs(url, logCache) {
 
 
 class ServerAppender {
-    constructor(url, sendInterval = 1000, maxCacheSize = 100000) {
+    constructor(config) {
+        const {
+            url,
+            sendInterval = 1000,
+            maxCacheSize = 100000,
+            showLevels = [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],
+        } = config;
         this.url = url;
         this.logCache = {logArray: []};
         this.showDate = false;
