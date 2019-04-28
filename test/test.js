@@ -1,4 +1,4 @@
-const {Likelog, ConsoleAppender, ServerAppender, LEVELS} = require('./index');
+const {Likelog, ConsoleAppender, ServerAppender, LEVELS} = require('../src');
 
 const log = new Likelog({
     appenders: [new ConsoleAppender(), new ServerAppender('http://localhost:5111/log', 3000, 1000)],
