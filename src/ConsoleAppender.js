@@ -2,7 +2,7 @@ const tools = require('./tools');
 const {Levels} = require('./Consts');
 
 class ConsoleAppender {
-    constructor(config) {
+    constructor(config = {}) {
         this.showDate = config.showDate || false;
         this.name = config.name || null;
         this.customPrefix = config.customPrefix || null;
