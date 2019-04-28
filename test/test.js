@@ -11,7 +11,7 @@ const log = new Likelog({
         new ServerAppender({
             url: 'http://localhost:5111/log',
             name: "App",
-            customPrefix: `Console prefix`,
+            customPrefix: `Server prefix`,
             sendInterval: 3000,
             maxCacheSize: 1000,
             showLevels: [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],

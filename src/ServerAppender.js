@@ -20,15 +20,20 @@ function pushLog(level, name, customPrefix, values, logCache, maxCacheSize) {
 async function sendLogs(url, logCache) {
     if (logCache.logArray.length === 0) return;
 
-
     const tempLogArray = logCache.logArray;
     logCache.logArray = [];
 
+    const fetchOptions = {
+        "mode": "cors",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "body": JSON.stringify(tempLogArray)
+    };
+
     try {
-        const response = await fetch(url, {
-            body: JSON.stringify(tempLogArray),
-            method: "POST"
-        });
+        const response = await fetch(url, fetchOptions);
 
         const res = await response.json();
         if (res.result !== 'ok') {
