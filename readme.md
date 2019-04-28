@@ -19,6 +19,8 @@ or
 * Usage:
 
 ```javascript
+const {Likelog, ConsoleAppender, ServerAppender, Levels} = require('likelog');
+
 const log = new Likelog({
     appenders: [
         new ConsoleAppender({
