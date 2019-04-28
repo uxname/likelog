@@ -8,12 +8,14 @@ const log = new Likelog({
             showDate: true,
             showLevels: [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],
         }),
-        /*new ServerAppender({
-            serverUrl: 'http://localhost:5111/log',
+        new ServerAppender({
+            url: 'http://localhost:5111/log',
+            name: "App",
+            customPrefix: `Console prefix`,
             sendInterval: 3000,
             maxCacheSize: 1000,
             showLevels: [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],
-        })*/
+        })
     ]
 });
 

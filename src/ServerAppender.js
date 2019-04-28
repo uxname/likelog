@@ -1,4 +1,5 @@
 const uuid = require('uuid-random');
+const {Levels} = require('./Consts');
 
 function pushLog(level, name, customPrefix, values, logCache, maxCacheSize) {
     if (logCache.logArray.length >= maxCacheSize) {
@@ -31,11 +32,11 @@ async function sendLogs(url, logCache) {
 
         const res = await response.json();
         if (res.result !== 'ok') {
-            console.log('Send logs fail, revert cache: result is not "ok"');
+            console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache: result is not "ok"`);
             logCache.logArray = [...tempLogArray, ...logCache.logArray];
         }
     } catch (e) {
-        console.log('Send logs fail, revert cache:', e.message);
+        console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache:`, e.message);
         logCache.logArray = [...tempLogArray, ...logCache.logArray];
     }
 }
@@ -43,27 +44,27 @@ async function sendLogs(url, logCache) {
 
 class ServerAppender {
     constructor(config) {
-        const {
-            url,
-            sendInterval = 1000,
-            maxCacheSize = 100000,
-            showLevels = [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],
-        } = config;
-        this.url = url;
+        if (
+            !config ||
+            !config.url
+        ) throw Error('Wrong config');
+
+        this.url = config.url;
+        this.name = config.name || null;
+        this.customPrefix = config.customPrefix || null;
+        this.sendInterval = config.sendInterval || 5000;
+        this.maxCacheSize = config.maxCacheSize || 1000;
+        this.showLevels = config.showLevels || [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR];
+
         this.logCache = {logArray: []};
-        this.showDate = false;
-        this.name = null;
-        this.customPrefix = null;
-        this.maxCacheSize = maxCacheSize;
-        this.sendInterval = sendInterval;
 
         setInterval(async () => {
-            // console.log(this.logCache.logArray.length);
             await sendLogs(this.url, this.logCache);
         }, this.sendInterval)
     }
 
     trace() {
+        if (this.showLevels) if (!this.showLevels.includes(Levels.TRACE)) return;
         return pushLog(
             'trace',
             this.name,
@@ -75,6 +76,7 @@ class ServerAppender {
     }
 
     debug() {
+        if (this.showLevels) if (!this.showLevels.includes(Levels.DEBUG)) return;
         return pushLog(
             'debug',
             this.name,
@@ -86,6 +88,7 @@ class ServerAppender {
     }
 
     info() {
+        if (this.showLevels) if (!this.showLevels.includes(Levels.INFO)) return;
         return pushLog(
             'info',
             this.name,
@@ -97,6 +100,7 @@ class ServerAppender {
     }
 
     warn() {
+        if (this.showLevels) if (!this.showLevels.includes(Levels.WARN)) return;
         return pushLog(
             'warn',
             this.name,
@@ -108,6 +112,7 @@ class ServerAppender {
     }
 
     error() {
+        if (this.showLevels && !this.showLevels.includes(Levels.ERROR)) return;
         return pushLog(
             'error',
             this.name,
