@@ -1,7 +1,9 @@
 Likelog
 ======
 
-Likelog - The Frontend Logging Framework for JavaScript 
+[**Likelog**](https://github.com/uxname/likelog) - The Frontend Logging Framework for JavaScript
+ 
+[**Likelog server**](https://github.com/uxname/likelogserver) - Backend part for receiving logs from Likelog 
 
 ## Size
 This library is very lightweight. The minified file has 5.5 KB and can be GZip-compressed to 2 KB.
