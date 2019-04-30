@@ -43,7 +43,6 @@ async function sendLogs(url, logCache, muteErrors) {
             logCache.logArray = [...tempLogArray, ...logCache.logArray];
         }
     } catch (e) {
-        console.log(e);
         if (!muteErrors) {
             console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache:`, e.message);
         }
