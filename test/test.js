@@ -27,7 +27,10 @@ log.info('Test info log', {test: 'log_info'});
 log.warn('Test warn log', {test: 'log_warn'});
 log.error('Test error log', {test: 'log_error'});
 
+log.time('testTime');
+
 setInterval(() => {
+    log.timeEnd('testTime', Levels.WARN);
     let foo;
     // noinspection JSUnresolvedVariable,BadExpressionStatementJS,JSUnusedAssignment
     foo.bar;
