@@ -49,6 +49,11 @@ log.debug('Test debug log', {test: 'log_debug'});
 log.info('Test info log', {test: 'log_info'});
 log.warn('Test warn log', {test: 'log_warn'});
 log.error('Test error log', {test: 'log_error'});
+
+log.time('testTime');
+// function execution...
+log.timeEnd('testTime'); // or: log.timeEnd('testTime', Levels.INFO);
+
 ```
 
 ![](./.github/demo.png)
