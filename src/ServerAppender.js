@@ -17,7 +17,7 @@ function pushLog(level, name, customPrefix, values, logCache, maxCacheSize) {
     logCache.logArray.push(log)
 }
 
-async function sendLogs(url, logCache) {
+async function sendLogs(url, logCache, muteErrors) {
     if (logCache.logArray.length === 0) return;
 
     const tempLogArray = logCache.logArray;
@@ -37,11 +37,16 @@ async function sendLogs(url, logCache) {
 
         const res = await response.json();
         if (res.result !== 'ok') {
-            console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache: result is not "ok"`);
+            if (!muteErrors) {
+                console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache: "result" is not "ok"`);
+            }
             logCache.logArray = [...tempLogArray, ...logCache.logArray];
         }
     } catch (e) {
-        console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache:`, e.message);
+        console.log(e);
+        if (!muteErrors) {
+            console.log(`Send logs fail (logs count:${tempLogArray.length}), revert cache:`, e.message);
+        }
         logCache.logArray = [...tempLogArray, ...logCache.logArray];
     }
 }
@@ -62,9 +67,21 @@ class ServerAppender {
         this.showLevels = config.showLevels || [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR];
 
         this.logCache = {logArray: []};
+        this.muteErrors = config.muteErrors || false;
 
-        setInterval(async () => {
-            await sendLogs(this.url, this.logCache);
+        this.startSending();
+    }
+
+    stopSending() {
+        if (this.intervalTaskId) {
+            clearInterval(this.intervalTaskId);
+        }
+    }
+
+    startSending() {
+        this.stopSending();
+        this.intervalTaskId = setInterval(async () => {
+            await sendLogs(this.url, this.logCache, this.muteErrors);
         }, this.sendInterval)
     }
 

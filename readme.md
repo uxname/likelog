@@ -37,6 +37,7 @@ const log = new Likelog({
             customPrefix: `Console prefix`,
             sendInterval: 3000,
             maxCacheSize: 1000,
+            muteErrors: true,
             showLevels: [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],
         })
     ]
