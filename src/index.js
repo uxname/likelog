@@ -6,6 +6,16 @@ class Likelog {
     constructor(config) {
         if (!config || !config.appenders) throw Error('Wrong config');
         this.appenders = config.appenders;
+
+        if (config.handleAllErrors) {
+            if (!window) return this.warn('Handle all errors disabled: "window" does not exist');
+            const thisLink = this;
+            window.onerror = function (message, url, lineNumber) {
+                const link = `${url}:${lineNumber}`;
+                thisLink.error(`\n[${link}]\n${message}`);
+                return true;
+            };
+        }
     }
 
     trace() {

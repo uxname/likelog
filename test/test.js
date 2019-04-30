@@ -1,10 +1,11 @@
 const {Likelog, ConsoleAppender, ServerAppender, Levels} = require('../src');
 
 const log = new Likelog({
+    handleAllErrors: true,
     appenders: [
         new ConsoleAppender({
             name: "App",
-            customPrefix: `Console prefix`,
+            customPrefix: 'Console prefix',
             showDate: true,
             showLevels: [Levels.TRACE, Levels.DEBUG, Levels.INFO, Levels.WARN, Levels.ERROR],
         }),
@@ -26,6 +27,9 @@ log.info('Test info log', {test: 'log_info'});
 log.warn('Test warn log', {test: 'log_warn'});
 log.error('Test error log', {test: 'log_error'});
 
-// setInterval(() => {
-//     log.warn('WORKS');
-// }, 200);
+setInterval(() => {
+    let foo;
+    // noinspection JSUnresolvedVariable,BadExpressionStatementJS,JSUnusedAssignment
+    foo.bar;
+}, 1000);
+

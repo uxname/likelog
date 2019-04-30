@@ -24,6 +24,7 @@ or
 const {Likelog, ConsoleAppender, ServerAppender, Levels} = require('likelog');
 
 const log = new Likelog({
+    handleAllErrors: true,
     appenders: [
         new ConsoleAppender({
             name: "App",
