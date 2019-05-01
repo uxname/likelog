@@ -1,10 +1,7 @@
 const ConsoleAppender = require('./ConsoleAppender');
 const ServerAppender = require('./ServerAppender');
 const Levels = require('./Consts').Levels;
-
-function isBrowser() {
-    return typeof window !== 'undefined'
-}
+const tools = require('./tools');
 
 class Likelog {
     constructor(config) {
@@ -16,7 +13,7 @@ class Likelog {
         if (config.handleAllErrors) {
             const thisLink = this;
 
-            if (isBrowser()) {
+            if (tools.isBrowser()) {
                 window.onerror = function (message, url, lineNumber) {
                     const link = `${url}:${lineNumber}`;
                     thisLink.error(`\n[${link}]\n${message}`);
@@ -56,7 +53,7 @@ class Likelog {
     }
 
     timeEnd(title, level = Levels.TRACE) {
-        const now = !isBrowser() ? Date.now() : performance.now();
+        const now = !tools.isBrowser() ? Date.now() : performance.now();
         const time = Number((now - this.timeMap.get(title)).toFixed(3));
         switch (level) {
             case Levels.TRACE:
