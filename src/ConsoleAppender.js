@@ -1,11 +1,11 @@
 const tools = require('./tools');
 const {Levels} = require('./Consts');
 
-const TERMINAL_BG_COLOR_TRACE = '\x1b[97m\x1b[104m%s \x1b[0m';
-const TERMINAL_BG_COLOR_DEBUG = '\x1b[97m\x1b[42m%s \x1b[0m';
-const TERMINAL_BG_COLOR_INFO = '\x1b[97m\x1b[45m%s \x1b[0m';
-const TERMINAL_BG_COLOR_WARN = '\x1b[97m\x1b[43m%s \x1b[0m';
-const TERMINAL_BG_COLOR_ERROR = '\x1b[97m\x1b[41m%s \x1b[0m';
+const TERMINAL_BG_COLOR_TRACE = '\x1b[97m\x1b[104m%s \x1b[0m\x1b[34m';
+const TERMINAL_BG_COLOR_DEBUG = '\x1b[97m\x1b[42m%s \x1b[0m\x1b[32m';
+const TERMINAL_BG_COLOR_INFO = '\x1b[97m\x1b[45m%s \x1b[0m\x1b[95m';
+const TERMINAL_BG_COLOR_WARN = '\x1b[97m\x1b[43m%s \x1b[0m\x1b[33m';
+const TERMINAL_BG_COLOR_ERROR = '\x1b[97m\x1b[41m%s \x1b[0m\x1b[91m';
 
 function generatePrefix(level, name, customPrefix, showDate) {
     return `${showDate ? '[' + tools.formatDate(new Date()) + '] ' : ''}[${level.toUpperCase()}]${name ? ' [' + name + ']' : ''}${customPrefix ? ' [' + customPrefix + ']' : ''}`;
