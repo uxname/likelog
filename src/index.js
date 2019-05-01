@@ -14,13 +14,19 @@ class Likelog {
         this.timeMap = new Map();
 
         if (config.handleAllErrors) {
-            if (!isBrowser()) return this.warn('Handle all errors disabled: "window" does not exist');
             const thisLink = this;
-            window.onerror = function (message, url, lineNumber) {
-                const link = `${url}:${lineNumber}`;
-                thisLink.error(`\n[${link}]\n${message}`);
-                return true;
-            };
+
+            if (isBrowser()) {
+                window.onerror = function (message, url, lineNumber) {
+                    const link = `${url}:${lineNumber}`;
+                    thisLink.error(`\n[${link}]\n${message}`);
+                    return true;
+                };
+            } else {
+                process.on('uncaughtException', function (err) {
+                    thisLink.error(err);
+                });
+            }
         }
     }
 
