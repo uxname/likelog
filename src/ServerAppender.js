@@ -1,3 +1,4 @@
+const tools = require('./tools');
 const uuid = require('uuid-random');
 const {Levels} = require('./Consts');
 
@@ -68,7 +69,9 @@ class ServerAppender {
         this.logCache = {logArray: []};
         this.muteErrors = config.muteErrors || false;
 
-        this.startSending();
+        if (tools.isBrowser()) {
+            this.startSending();
+        }
     }
 
     stopSending() {
